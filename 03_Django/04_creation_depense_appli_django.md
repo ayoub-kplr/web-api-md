@@ -176,7 +176,7 @@ type: 'bar',
 data: data,
 options: options });
 
-</script> ```
+</script> ````
 
 Ce code HTML crée un graphique en barres avec les noms des dépenses sur l'axe X et les montants des dépenses sur l'axe Y.
 
