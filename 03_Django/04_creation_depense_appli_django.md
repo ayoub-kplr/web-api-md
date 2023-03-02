@@ -151,7 +151,7 @@ Voici un exemple de code HTML pour créer un graphique en barres avec Chart.js :
 
 html
 
-```html
+````html
 <canvas id="myChart"></canvas>
 <script>
      var ctx = document.getElementById('myChart').getContext('2d');
@@ -176,7 +176,8 @@ type: 'bar',
 data: data,
 options: options });
 
-</script> ````
+</script> 
+````
 
 Ce code HTML crée un graphique en barres avec les noms des dépenses sur l'axe X et les montants des dépenses sur l'axe Y.
 
