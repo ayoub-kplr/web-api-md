@@ -1,4 +1,4 @@
-Bienvenue dans "Créer une application web de liste de contacts de base à l'aide de Django". Il s'agit d'un cours basé sur un projet. Avant de plonger dans le projet, veuillez jeter un coup d'œil aux objectifs et à la structure du cours:
+Bienvenue dans "Créer une application web de Gestion de budget à l'aide de Django". Il s'agit d'un cours basé sur un projet. Avant de plonger dans le projet, veuillez jeter un coup d'œil aux objectifs et à la structure du cours:
 
 ### Objectifs du cours
 Dans ce cours, nous allons nous concentrer sur trois objectifs d'apprentissage:
