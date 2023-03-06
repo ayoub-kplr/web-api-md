@@ -1,11 +1,11 @@
 
 ````bash
 $ django-admin startproject budget
-`````
+````
 
-`````bash
+````bash
 $ code .
-`````
+````
 
 
 La premiere interface

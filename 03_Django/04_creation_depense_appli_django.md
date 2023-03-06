@@ -40,7 +40,7 @@ Dans le fichier settings.py de votre projet Django, ajoutez la configuration de 
 
 python
 
-```python
+````python
 DATABASES = {
 			 'default': {
 			          'ENGINE': 
@@ -77,7 +77,7 @@ Maintenant que nous avons défini le modèle de données, nous pouvons créer de
 
 Dans le fichier views.py de votre application Django, ajoutez les vues suivantes :
 
-```python
+````python
 from django.shortcuts import render, redirect
 from .models import Expense
 
@@ -89,14 +89,14 @@ def expense_add(request):
 		name = request.POST['name']         
 		amount = request.POST['amount']         
 		date = request.POST['date']         
-		Expense.objects.create(name=name` `, amount=amount, date=date)     
+		Expense.objects.create(name=name, amount=amount, date=date)     
 		return redirect('expense_list') 
 	return render(request, 'expense_add.html')
 ````
 
 
 La vue expense_list récupère toutes les dépenses à partir de la base de données et les affiche dans un template HTML appelé expense_list.html.  La vue expense_add permet à l'utilisateur d'ajouter une nouvelle dépense. Elle vérifie si la requête est une requête POST (c'est-à-dire si l'utilisateur a soumis un formulaire), récupère les données du formulaire et crée une nouvelle dépense dans la base de données. Si la requête est une requête GET, elle affiche un formulaire vide pour permettre à l'utilisateur d'ajouter une nouvelle dépense.  ## Étape 7 : Création des templates  Maintenant que nous avons défini les vues, nous pouvons créer les templates HTML correspondants. Les templates HTML définissent la structure et le style de la page web.  Dans le répertoire templates de votre application Django, créez deux fichiers HTML : expense_list.html et expense_add.html.  Le template expense_list.html doit afficher toutes les dépenses dans un tableau. Voici un exemple de code HTML pour le template expense_list.html :  
-`````html
+````html
 <table>
 <thead>
 <tr>
@@ -114,13 +114,13 @@ La vue expense_list récupère toutes les dépenses à partir de la base de donn
 </tr>
 {% endfor %}
 </tbody> </table>
-`````
+````
 
 Le template expense_add.html doit afficher un formulaire pour permettre à l'utilisateur d'ajouter une nouvelle dépense. Voici un exemple de code HTML pour le template expense_add.html :
 
 
 
-```html
+````html
 <form method="post">     
 	{% csrf_token %}     
 	<label for="name">Nom :</label>     
@@ -139,9 +139,8 @@ Maintenant que nous avons une application de suivi de dépenses fonctionnelle, n
 
 Tout d'abord, vous devez inclure la bibliothèque Chart.js dans votre template HTML. Vous pouvez télécharger la bibliothèque depuis le site officiel de Chart.js et l'inclure dans votre template HTML :
 
-html
 
-```html
+````html
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 ````
 
@@ -149,7 +148,7 @@ Ensuite, vous pouvez créer un graphique dans votre template HTML en utilisant l
 
 Voici un exemple de code HTML pour créer un graphique en barres avec Chart.js :
 
-html
+
 
 ````html
 <canvas id="myChart"></canvas>
