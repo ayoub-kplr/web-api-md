@@ -86,7 +86,16 @@ def upload_excel(request):
                 fichier=fichier,
                 donnees=data
             )
-            excel_data
+            excel_data.save()
+            return redirect('view_excel', pk=excel_data.pk)
+    else:
+        form = ExcelUploadForm()
+    return render(request, 'monapplication/upload_excel.html', {'form': form})
+
+def view_excel(request, pk):
+    excel_data = ExcelData.objects.get(pk=pk)
+    return render(request, 'monapplication/view_excel.html', {'excel_data': excel_data})
+
 
 ```
 
