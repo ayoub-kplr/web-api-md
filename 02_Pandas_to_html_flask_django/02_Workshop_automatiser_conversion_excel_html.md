@@ -99,3 +99,109 @@ def view_excel(request, pk):
 
 ```
 
+
+Voici un exemple de base de modèle `base.html` qui utilise Bootstrap pour rendre notre application plus esthétique et conviviale:
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Titre par défaut{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Mon application</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'upload_excel' %}">Télécharger un fichier Excel</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    {% block content %}{% endblock %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+```
+
+-   Nous utilisons Bootstrap en important sa feuille de style CSS et son fichier JavaScript à partir des CDN.
+-   Nous utilisons la classe `navbar` de Bootstrap pour afficher une barre de navigation en haut de chaque page.
+-   Nous définissons une marque `navbar-brand` et un bouton de basculement pour afficher les éléments de navigation sur les petits écrans.
+-   Nous utilisons la classe `container` de Bootstrap pour envelopper le contenu principal de chaque page et créer une marge supérieure.
+-   Nous utilisons la balise `{% block content %}` pour inclure le contenu spécifique à chaque page à l'intérieur du conteneur.
+
+Un exemple de modèle pour la vue `upload_excel` qui affiche un formulaire permettant de télécharger un fichier Excel:
+
+```html
+<!-- templates//upload_excel.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Télécharger un fichier Excel</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Télécharger</button>
+  </form>
+{% endblock %}
+
+```
+
+-   Nous étendons la base de modèle `base.html` qui contiendra les éléments communs à toutes les pages de notre application.
+-   Nous utilisons la balise `{% block content %}` pour définir le contenu spécifique à cette page.
+-   Nous affichons un titre `h2` et un formulaire permettant de télécharger un fichier Excel en utilisant la méthode POST et l'encodage `multipart/form-data`.
+-   Nous incluons un jeton CSRF pour protéger notre formulaire contre les attaques CSRF.
+-   Nous affichons le champ de fichier du formulaire à l'aide de la méthode `form.as_p`.
+-   Nous affichons un bouton pour soumettre le formulaire.
+
+Un exemple de modèle pour la vue `view_excel` qui affiche le contenu du fichier Excel téléchargé sous forme de tableau HTML en utilisant les données fournies par la vue:
+
+```html
+<!-- monapplication/templates/monapplication/view_excel.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ excel_file.name }}</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        {% for column in columns %}
+          <th>{{ column }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+        <tr>
+          {% for value in row %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+
+```
+
+-   Nous étendons la base de modèle `base.html` pour inclure les éléments communs à toutes les pages de notre application.
+-   Nous utilisons la balise `{% block content %}` pour définir le contenu spécifique à cette page.
+-   Nous affichons le nom du fichier Excel téléchargé à l'aide de la propriété `name` fournie par la vue.
+-   Nous affichons les données du fichier Excel téléchargé sous forme de tableau HTML en utilisant une boucle `for` pour parcourir les colonnes et les lignes de la table.
+-   Nous affichons les en-têtes de colonne en utilisant une boucle `for` pour parcourir les noms de colonnes stockés dans la liste `columns`.
+-   Nous affichons les valeurs de chaque ligne en utilisant une boucle `for` imbriquée pour parcourir les valeurs de chaque ligne stockées dans la liste `rows`.
+
